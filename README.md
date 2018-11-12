@@ -1,10 +1,11 @@
 # chat-dome
 
 ## 项目介绍
-一个 简单的在线聊天
-web 服务 使用 自定义MVP php 框架
-前端 简陋的聊天室 嵌套使用 Vue 
-socket 服务  使用 workerman
+一个 简单的 PHP 在线聊天系统
+
+1. web 服务 使用 个人版学习 MVP 框架
+2. 前端 简陋的聊天室 嵌套使用 Vue 
+3. socket 服务  使用 workerman
 
 ## 实现功能
 1. 用户登陆注册
@@ -39,13 +40,15 @@ route/web.php  //web 服务路由
 start.php 
 
 ## 开始使用
+在根目录建立 logs 目录
 复制  env.php.example -> env.php
 修改 js/webSocket.js     url: "ws://192.168.13.89:2347",  ipconfig   你的 IPv4 地址 . . . . . . . . . . . . : 192.168.13.89
 1. composer install
+修改 artisan.php  serve 项   IPv4 地址
 2. php artisan.php serve  启动 web 服务  php -S 0.0.0.0:9999 -t public/
 3. php start.php          启动聊天服务
 
-打开 浏览器
+打开 浏览器 
 
 
 

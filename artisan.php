@@ -11,7 +11,7 @@ if (php_sapi_name() != 'cli')
 // var_dump($argv);
 
 if ($argv[1] == 'serve') {
-    echo 'http://0.0.0.0:9999';
+    echo 'http://192.168.13.89:9999'; // 你的 ip 地址
     exec("php -S 0.0.0.0:9999 -t public/");
 }
 if ($argv[1] == 'index') {
