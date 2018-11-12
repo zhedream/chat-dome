@@ -1,0 +1,118 @@
+<?php if(isset($_SESSION['_MESS_'])): ?>
+    <div id="_mess_" style="border: 1px solid #25b952;background-color:#b9ecbd;padding:5px;">
+        <?=$_SESSION['_MESS_']?>
+    </div>
+    <?php unset($_SESSION['_MESS_']) ?>
+    <script>
+    var m = document.getElementById('_mess_');
+    var s = 3;
+    var si = setInterval(function(){
+        s--;
+        if(s==0)
+        {
+            m.style.display='none';
+            clearInterval(si);
+        }
+    }, 1000);
+    </script>
+<?php endif; ?>
+
+<style>
+body{
+    display: none;
+}
+</style>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<div id="nav">
+    <!-- <?php var_dump($_static)?> -->
+    <h1>智聊系统</h1>
+    <div id="memu<?php echo isset($_static)?$_static:'' ?>">
+            <!-- 没有设置 静态菜单 变量 则php 输出 菜单 -->
+        <?php if(!isset($_static) || $_static==''){ ?>
+            <a href="/">首页</a>
+            <?php if(!isset($_SESSION['email'])): ?>
+            <a href="<?=Route('user.regist') ?>">注册</a>
+            <a href="<?=Route('user.login')?>">登录</a>
+            <?php else: ?>
+            <?=$_SESSION['email']?>
+            <img src="<?=$_SESSION['avatar']?>" width="60" alt="">
+            <a href="<?=Route('user.recharge')?>">充值</a>
+            <a href="<?=Route('blog.index')?>">日志列表</a>
+            <a href="<?=Route('blog.create')?>">发表日志</a>
+            <a href="<?=Route('user.logout')?>">退出</a>
+            <?php endif; ?>
+        <?php }else{ ?>
+            <a href="/">首页</a>
+            <a href="<?=Route('user.regist') ?>">注册</a>
+            <a href="<?=Route('user.login') ?>">登录</a>
+        <?php }?>
+
+        <?php if(config('mode')=='dev'): ?>
+            <select id="alluser">
+                <option value="">选择账号</option>
+            </select>
+        <?php endif; ?>
+    </div>
+
+
+</div>
+
+<script>
+    $('body').fadeIn(1000);
+    // var app = new Vue({
+    //     'el':'#nav',
+    //     'data':{
+
+    //     }
+    // })
+
+
+
+<?php if(config('mode') == 'dev'): ?>
+
+    $.ajax({
+    type:"GET",
+    url:"/dev/users",
+    dataType:"json",
+    success:function(data)
+    {   
+        console.log(data);
+        
+        if(data.err == 1)
+        {
+            var html = '';
+            for(var i=0;i<data.data.length;i++)
+            {
+                html += '<option value="'+data.data[i].email+'">'+data.data[i].email+'</option>';
+            }
+            $("#alluser").append(html)
+        }
+    }
+});
+
+$("#alluser").change(function(){
+    // 获取选中的值
+    var email = $(this).val()
+    if(email != '')
+    {
+        $.ajax({
+            type:"GET",
+            url:"/dev/login?email="+email,
+            success:function(data)
+            {
+                // 刷新页面
+                location.reload();
+            }
+        })
+    }
+});
+
+<?php endif; ?>
+    
+</script>
+
+
+<hr>

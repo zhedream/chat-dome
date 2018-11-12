@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>异常</title>
+</head>
+<body>
+    <h1>错误信息：<?=$Message?></h1>
+    <?php if(isset($LocationCall)){?>
+            <br>
+        错误的位置：
+            <br>
+            FILE: <?=$LocationCall['file']?> 
+            <br>
+            LINE: <?=$LocationCall['line']?>
+    <?php } ?>
+
+    <?php if(isset($ThrowCall)){?>
+            <br>
+            <br>
+        抛出异常的位置：
+            <br>
+            FILE: <?=$ThrowCall['file']?> 
+            <br>
+            LINE: <?=$ThrowCall['line']?>
+    <?php } ?>
+
+    <?php if(isset($AllCall)){?>
+            <br>
+            <br>
+        所有调用点：
+
+            <?php foreach($AllCall as $val){?>
+                <br>
+                <br>
+                FILE: <?=$val['file']?> 
+                <br>
+                LINE: <?=$val['line']?>
+                <br>
+                FN: <?=$val['function']?>
+            <?php } ?>
+    <?php } ?>
+
+</body>
+</html>
