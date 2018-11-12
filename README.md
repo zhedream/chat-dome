@@ -36,11 +36,11 @@
     **start.php**           -> web Socket 聊天服务器   **chat-dome 主要代码文件**
 
 ## 主要文件
-route/web.php  //web 服务路由
-start.php 
-js/app.js
-js/webSocket.js
-js/myWebSocket.class.js
+1. route/web.php  //web 服务路由
+2. start.php 
+3. js/app.js
+4. js/webSocket.js
+5. js/myWebSocket.class.js
 
 ## 开始使用
 在根目录建立 logs 目录
