@@ -18,6 +18,7 @@ return [
     'routeMiddleware'=>[
         'CheckLogin'=>\app\Middlewares\CheckLogin::class,
         'PassErrTime'=>\app\Middlewares\PassErrTime::class,
+        'CheckManage'=>\app\Middlewares\CheckManage::class,
 
     ],
     'middlewareGroups'=>[
