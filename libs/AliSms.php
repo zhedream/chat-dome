@@ -11,15 +11,15 @@ class AliSms{
 
         // RAM -> sms
         $config = [
-            'accessKeyId'    => 'LTAItvg3o94MTDE6',
-            'accessKeySecret' => 'nC2XFF30fy3KItFrYHdWIzeJm4HPL0',
+            'accessKeyId'    => '',
+            'accessKeySecret' => '',
         ];
 
         $client  = new Client($config);
         $sendSms = new SendSms;
         $sendSms->setPhoneNumbers($phone);
-        $sendSms->setSignName('觅风启航');
-        $sendSms->setTemplateCode('SMS_126260035');
+        $sendSms->setSignName('');
+        $sendSms->setTemplateCode('');
         $sendSms->setTemplateParam(['code' => $code]);
         $sendSms->setOutId('demo');
         return $client->execute($sendSms);

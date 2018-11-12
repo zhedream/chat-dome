@@ -11,8 +11,8 @@ if (php_sapi_name() != 'cli')
 // var_dump($argv);
 
 if ($argv[1] == 'serve') {
-    echo 'http://localhost:9999';
-    exec("php -S localhost:9999 -t public/");
+    echo 'http://0.0.0.0:9999';
+    exec("php -S 0.0.0.0:9999 -t public/");
 }
 if ($argv[1] == 'index') {
     exec("php public/index.php static index");
