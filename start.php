@@ -16,9 +16,15 @@ $global_id = 0;
  
 // 当客户端连上来时分配id,自动保存连接, 并通知所有客户端
 function handle_connect($connection) {
-    global $ws_worker, $global_id;
-    // 为这个链接分配一个id
-    $connection->count_id = ++$global_id;
+
+    $connection->onWebSocketConnect = function ($connection, $http_header){
+
+        global $ws_worker, $global_id;
+        // 为这个链接分配一个id
+        $connection->count_id = ++$global_id;
+
+    }; // 有结束 分号
+
 }
 
 // 当客户端断开时,广播给所有客户端

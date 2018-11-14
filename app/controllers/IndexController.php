@@ -13,7 +13,7 @@ class IndexController extends Controller {
         view('index.index');
     }
     function chat(){
-        view('chat.index');
+        view('chat.chat');
     }
 
     function login(){
@@ -23,6 +23,7 @@ class IndexController extends Controller {
 
     function dologin(Request $req){
         $data = $req->all();
+        // dd($data);
         $user = (new User)->where(['uname'=>$req->uname,'password'=>$req->password])->first();
         // dd($user);
         if($user){
