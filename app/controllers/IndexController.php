@@ -18,19 +18,33 @@ class IndexController extends Controller {
         view('chat.chat',['token_jwt',$_SESSION['token_jwt']]);
     }
 
-    function login(){
+    function login(Request $req){
         $jwt_key = 'key123';
         if(isset($_COOKIE['uuu'])){
-            redirect(Route('index.dologin'));
+            $_SESSION['has_cookie'] = true;
+            // redirect(Route('index.dologin'));
+            $this->dologin($req);
+        }else{
+            $_SESSION['has_cookie']==false;
+            return view('login.login');
         }
-        return view('login.login');
+    }
+
+    function logout(){
+        if($_SESSION['has_cookie'] ==true){
+            $_SESSION['uid'] = null;
+            $_SESSION['uname'] = null;
+            $_SESSION['has_cookie'] = null;
+            response()->WithCookie('uuu','false',-1); // cookie登陆 密码错误  清除cookie
+            return message('安全退出',1,Route('index.login'),2);
+        }
     }
 
     function dologin(Request $req){
         $jwt_key = 'key123';
         // $data = $req->all();dd($data);
         $remenber = $req->remember==null? false:true;
-
+        // dd($remenber);
         // 登陆页 检测cookie 直接跳转登陆古
         if(isset($_COOKIE['uuu'])){
             $data = JWT::decode($_COOKIE['uuu'], $jwt_key, array('HS256'));
@@ -59,10 +73,18 @@ class IndexController extends Controller {
             $cookie_jwt = JWT::encode($cookie,$jwt_key); // 生成 JWT 的 cookie
             $token_jwt = JWT::encode($token,$jwt_key); // 生成 token
             $_SESSION['token_jwt'] = $token_jwt; // 用于 index.chat
-            response()->WithCookie('uuu',$cookie_jwt,strtotime("+1 day")); // 响应设置Cookie
-            dd($token);
+            if($_SESSION['has_cookie'] !=true && $remenber==true){
+
+                response()->WithCookie('uuu',$cookie_jwt,strtotime("+1 day")); // 非 cookie 登陆  记住我
+                // dd('响应Cookie');
+            }
+            // dd($token);
             message('登陆成功',1,Route('index.chat'),2);
         }else{
+            if($_SESSION['has_cookie'] ==true){
+                response()->WithCookie('uuu','false',-1); // cookie登陆 密码错误  清除cookie
+                return message('登陆信息过期',1,Route('index.login'),2);
+            }
             return message('用户不存在 或密码错误',1,Route('index.login'),2);
         }
     }

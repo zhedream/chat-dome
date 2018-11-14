@@ -7,6 +7,7 @@ Route::get('/test/test', 'app/controllers/IndexController@test');
 
 Route::get('/', 'app/controllers/IndexController@chat')->middleware('CheckLogin')->name('index.chat'); // 首页聊天
 Route::get('/login', 'app/controllers/IndexController@login')->name('index.login'); // 登陆
+Route::get('/logout', 'app/controllers/IndexController@logout')->name('index.logout'); // 登陆
 Route::post('/dologin', 'app/controllers/IndexController@dologin')->name('index.dologin');
 Route::get('/regist', 'app/controllers/IndexController@regist')->name('index.regist'); // 注册
 Route::post('/doregist', 'app/controllers/IndexController@doregist')->name('index.doregist');

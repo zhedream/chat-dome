@@ -42,7 +42,7 @@ return array(
     'cookie'=> array(
         'path'=> '/',
         'secure'=> false,
-        'domain'=> 'www.myFrame.com',
+        'domain'=> null,
     )
 );
 
