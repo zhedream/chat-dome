@@ -29,18 +29,21 @@ function onmessage(e) {
     // var el = document.getElementById(content);
     switch (action) {
         case 'userConnect':
-            app.roomData.contents.push(`${data.uname}加入聊天`)
-            app.roomData.clients = data.clients_list
+        
+            console.log(data);
+            // app.contents['all'].push(`${data.uname}加入聊天`)
+            app.contents['all'].push(data)
+            app.clients = data.clients_list
             break;
         case 'userClose':
-            app.roomData.contents.push(`${data.uname}离开聊天`)
-            app.roomData.clients = data.clients_list
+            app.contents.push(`${data.uname}离开聊天`)
+            app.clients = data.clients_list
             break;
         case 'all':
-            app.roomData.contents.push(`${data.uname} 对大家说：${data.msg}`)
+            app.contents.push(`${data.uname} 对大家说：${data.msg}`)
             break;
         case 'to':
-            app.roomData.contents.push(`${data.uname} 私聊你说：${data.msg}`)
+            app.contents.push(`${data.uname} 私聊你说：${data.msg}`)
             break;
     
         default:

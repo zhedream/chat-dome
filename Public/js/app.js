@@ -1,19 +1,28 @@
 var app = new Vue({
-
+    delimiters: ['v{', '}'],
     el: '#app',
     data: {
         uname: '',
-        content: '',
+        contents: {
+            'all':[]
+        },
+        talks:[],// 对话列表
+        talkto:-1,
         members: {},
         viewindex: 0,
         views: ['room'],
+        clients:{},
         roomData: {
             id: 1,
             title: '闲聊',
-            contents: [
-                '欢迎来到本闲聊房间',
-                '注意文明用语',
-            ],
+            contents: {
+                'all':[
+                    {}
+                ],
+                0:[
+
+                ],
+            },
             clients:{},
         }
     },
@@ -23,16 +32,31 @@ var app = new Vue({
         }
     },
     methods: {
-        msg: function (text = '') {
-            lay.msg(text)
-        },
-        typing: function () {
-            this.msg()
-        },
         send: function () {
             ms.send('message', this.content)
         },
         into:function(){
+
+        },
+        listclick:function(client){
+            console.log(client);
+            this.talkto = client.conn_id;
+            for (const key in this.talks) {
+                if (this.talks.hasOwnProperty(key)) {
+                    const talk = this.talks[key];
+                    if(talk.conn_id==client.conn_id){
+                        console.log('存在于takls');
+                        return;
+                    }
+                }
+            }
+            this.talks.push(client);
+            
+        },
+        talkclick:function(conn_id){
+            console.log('talkto',conn_id);
+            this.talkto = conn_id;
+            
 
         }
     },
@@ -43,6 +67,7 @@ var app = new Vue({
         console.log('创建后');
         this.uname = uname;
         this.uid = uid;
+        connect();// 连接服务器
     }
 
 })

@@ -65,6 +65,7 @@ function handle_message($connection, $data) {
             'to_conn_id'=>-1,
             'msg'=>$data->uname." Online",
             'clients_list'=>getAllClient(),
+            'type'=>'online'
         ]);
         // var_dump($connection);
             return ;
@@ -128,7 +129,8 @@ function getAllClient(){
         $clients[]=[
             'conn_id'=>$conn->id,
             'uid'=>$conn->uid,
-            'uname'=>$conn->uname,
+            'uname'=>$conn->id.':'.$conn->uname,
+            'avatar'=>'/img/head/2015.jpg',
         ];
     }
     return $clients;
