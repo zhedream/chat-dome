@@ -1,10 +1,10 @@
 Vue.component('room', {
-    props: ['id','title','contents','clients','uname'],
+    props: ['id','title','contents','clients','uname','members'],
     data: function () {
         return {
             name: '',
             content: '',
-            members: {},
+            // members: {},
             viewindex: 0,
             views: ['room'],
             to:-1,

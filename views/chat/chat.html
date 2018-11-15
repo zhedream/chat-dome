@@ -13,7 +13,7 @@
     <div id="app">
 
         <!-- <button @click="into" >进入房间</button> -->
-        <component v-bind="roomData" :uname="uname" :is="currentView"></component>
+        <component v-bind="roomData" :uname="uname" :members="members" :is="currentView"></component>
 
     </div>
 
@@ -22,7 +22,7 @@
             <div class="chat01">
                 <div class="chat01_title">
                     <ul class="talkTo">
-                        <li><a href="javascript:;">黑山老妖</a></li></ul>
+                        <li><a href="javascript:;">群聊</a></li></ul>
                     <a class="close_btn" href="javascript:;"></a>
                 </div>
                 <div class="chat01_content" style="padding: 10px;" id="chat01_content">

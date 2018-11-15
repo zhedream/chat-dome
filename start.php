@@ -7,7 +7,10 @@ define('HEARTBEAT_TIME', 1000); // 设置心跳 时间
 // require_once ROOT . "/core/App.php"; // 核心APP 入口
 require_once ROOT . "/core/Loader.php";
 require_once ROOT . "/core/CoreFn.php"; // 核心辅助全局函数
-
+define("DS", DIRECTORY_SEPARATOR);
+define("PUBLIC_PATH", ROOT . "/public" . DS);
+define("UPLOAD_PATH", ROOT . "/uploads" . DS);
+$GLOBALS['config'] = include ROOT . "/Config/config.php";
 // use core\Route;
 use Workerman\Lib\Timer;
 use Workerman\Worker;
@@ -63,10 +66,13 @@ function handle_message($connection, $data) {
             'msg'=>$data->uname." Online",
             'clients_list'=>getAllClient(),
         ]);
-        var_dump($connection);
+        // var_dump($connection);
             return ;
         
         case 'all':
+            $user = new app\Models\User;
+            $users = $user->get();
+            var_dump($users);
 
             sendAll('all',[
                 'uname'=>$connection->uname,

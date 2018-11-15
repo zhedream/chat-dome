@@ -82,7 +82,7 @@ class IndexController extends Controller {
             message('登陆成功',1,Route('index.chat'),2);
         }else{
             if($_SESSION['has_cookie'] ==true){
-                response()->WithCookie('uuu','false',-1); // cookie登陆 密码错误  清除cookie
+                response()->WithCookie('uuu','false',-1); // cookie 登陆 密码错误  清除 cookie
                 return message('登陆信息过期',1,Route('index.login'),2);
             }
             return message('用户不存在 或密码错误',1,Route('index.login'),2);
