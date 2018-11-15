@@ -35,7 +35,7 @@ color: #fff; }
 .chatRight { width: 166px; height: auto; float: right; }
 .chat01_title, .chat03_title { background: url('../img/title_bg.jpg') repeat-x 0 0; height: 30px; position: relative; }
 .talkTo { }
-.talkTo li { background: url('../img/title-bg.png') no-repeat 0px -1px; _background-position: 0 0; line-height: 17px; float: left; padding-left: 6px; margin: 5px 20px; _margin-left: 9px; }
+.talkTo li { background: url('../img/title-bg.png') no-repeat 0px -1px; _background-position: 0 0; line-height: 17px; float: left; padding-left: 6px; margin: 5px 5px; _margin-left: 9px; }
 .talkTo li a { background: url('../img/title-bg.png') no-repeat bottom right; padding: 4px 11px 4px 7px; _padding-top: 0px; _padding-bottom: 0px; height: 19px; font-size: 12px; font-weight: bold; color: #333; text-decoration: none; }
 .close_btn { background: url('../img/icon.png') no-repeat 0 0; position: absolute; top: 10px; right: 8px; display: block; width: 15px; height: 15px; }
 .chat02_title { background: url('../img/chat_title_bg.jpg') repeat-x 0 0; height: 25px; position: relative; }
@@ -93,4 +93,8 @@ label.offline { background: url('../img/status.gif') no-repeat 0 -11px; bottom: 
 .chat01 .sender{
 		
     text-align: right;
+}
+
+.talkTo .select a{
+    color:red;
 }

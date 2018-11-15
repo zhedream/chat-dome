@@ -22,8 +22,8 @@
             <div class="chat01">
                 <div class="chat01_title">
                     <ul class="talkTo">
-                        <li><a href="javascript:;" @click="talkclick(-1)">群聊</a></li>
-                        <li v-for="talk in talks" @click="talkclick(talk.conn_id)"><a href="javascript:;">v{talk.uname}</a></li></ul>
+                        <li :class="{select:talkto==-1}"><a href="javascript:;" @click="talkclick(-1)">群聊</a></li>
+                        <li :class="{select:talkto==talk.conn_id}" v-for="talk in talks" @click="talkclick(talk.conn_id)"><a href="javascript:;">v{talk.uname}</a></li></ul>
                     </ul>
                     <a class="close_btn" href="javascript:;"></a>
                 </div>

@@ -25,15 +25,17 @@ function onmessage(e) {
     let data = e.data;
     console.log('ACTION->',action);
     
-    console.log('onmessage->data',data);
+    // console.log('onmessage->data',data);
     // var el = document.getElementById(content);
     switch (action) {
         case 'userConnect':
         
-            console.log(data);
+            console.log('userConnect',data);
             // app.contents['all'].push(`${data.uname}加入聊天`)
-            app.contents['all'].push(data)
             app.clients = data.clients_list
+            delete data.clients_list;
+            // data.pop('clients_list');
+            app.contents['all'].push(data)
             break;
         case 'userClose':
             app.contents.push(`${data.uname}离开聊天`)
